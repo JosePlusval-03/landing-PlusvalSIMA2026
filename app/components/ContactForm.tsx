@@ -50,8 +50,6 @@ export default function ContactForm() {
           position: "relative",
           zIndex: 2,
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "8rem",
           alignItems: "start",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -245,9 +243,9 @@ export default function ContactForm() {
       </div>
 
       <style>{`
-        .contact-grid { grid-template-columns: 1fr 1fr; }
+        .contact-grid { grid-template-columns: 1fr 1fr; gap: 8rem; }
         @media (max-width: 768px) {
-          .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+          .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
       `}</style>
     </section>
