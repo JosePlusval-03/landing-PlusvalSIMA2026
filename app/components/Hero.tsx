@@ -52,7 +52,7 @@ export default function Hero() {
         style={{
           position: "absolute", inset: 0, zIndex: 2,
           display: "flex", flexDirection: "column",
-          padding: "0 2.5rem 4.5rem",
+          padding: "7rem 2.5rem 4.5rem",
           maxWidth: "1280px", margin: "0 auto", left: 0, right: 0,
           justifyContent: "flex-end",
         }}
@@ -89,7 +89,7 @@ export default function Hero() {
             style={{
               ...reveal(0.45),
               fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(2.8rem, 7vw, 7rem)",
+              fontSize: "clamp(2.4rem, 5.5vw, 6.5rem)",
               fontWeight: 300,
               lineHeight: 1.0,
               letterSpacing: "-0.025em",
