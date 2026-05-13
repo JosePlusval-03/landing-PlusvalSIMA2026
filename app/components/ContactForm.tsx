@@ -67,6 +67,7 @@ export default function ContactForm() {
           </span>
 
           <h2
+            className="contact-heading"
             style={{
               fontFamily: "var(--font-arimo)",
               fontSize: "clamp(2.5rem, 5vw, 5rem)",
@@ -244,7 +245,13 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <style>{`.contact-grid { grid-template-columns: 1fr 1fr; } @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 4rem; } }`}</style>
+      <style>{`
+        .contact-grid { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 768px) {
+          .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+          .contact-heading { font-size: clamp(1.8rem, 9vw, 2.8rem) !important; }
+        }
+      `}</style>
     </section>
   );
 }
