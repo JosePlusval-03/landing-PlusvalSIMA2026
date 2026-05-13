@@ -67,10 +67,9 @@ export default function ContactForm() {
           </span>
 
           <h2
-            className="contact-heading"
             style={{
               fontFamily: "var(--font-arimo)",
-              fontSize: "clamp(2.5rem, 5vw, 5rem)",
+              fontSize: "clamp(1.6rem, 5vw, 5rem)",
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: "-0.025em",
@@ -249,7 +248,6 @@ export default function ContactForm() {
         .contact-grid { grid-template-columns: 1fr 1fr; }
         @media (max-width: 768px) {
           .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
-          .contact-heading { font-size: clamp(1.8rem, 9vw, 2.8rem) !important; }
         }
       `}</style>
     </section>
