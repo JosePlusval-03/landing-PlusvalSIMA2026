@@ -237,7 +237,6 @@ function SceneQuote() {
         style={{
           fontFamily: "var(--font-cormorant)",
           fontSize: "clamp(1.4rem, 2.8vw, 2.5rem)",
-          fontWeight: 300,
           fontStyle: "italic",
           color: "#f5f0e8",
           fontWeight: 700,
