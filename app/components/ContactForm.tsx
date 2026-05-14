@@ -22,6 +22,7 @@ export default function ContactForm() {
   const { ref, visible } = useReveal(0.04);
   const [form, setForm] = useState({ nombre: "", email: "", pais: "", telefono: "", interes: "" });
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -127,7 +128,19 @@ export default function ContactForm() {
             </div>
           ) : (
             <form
-              onSubmit={(e) => { e.preventDefault(); setEnviado(true); }}
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setEnviando(true);
+                try {
+                  await fetch("/api/lead", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(form),
+                  });
+                } catch (_) {}
+                setEnviando(false);
+                setEnviado(true);
+              }}
               style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}
             >
               <p style={{ fontFamily: "var(--font-arimo)", fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(16,24,32,0.28)", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(16,24,32,0.08)" }}>
@@ -213,6 +226,7 @@ export default function ContactForm() {
 
               <button
                 type="submit"
+                disabled={enviando}
                 style={{
                   background: "#101820",
                   color: "#f5f0e8",
@@ -223,15 +237,16 @@ export default function ContactForm() {
                   fontWeight: 400,
                   padding: "1.1rem 2.5rem",
                   border: "none",
-                  cursor: "pointer",
+                  cursor: enviando ? "wait" : "pointer",
                   transition: "background 0.4s, color 0.4s",
                   alignSelf: "flex-start",
                   marginTop: "0.5rem",
+                  opacity: enviando ? 0.6 : 1,
                 }}
-                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "#78BE21"; el.style.color = "#101820"; }}
+                onMouseEnter={(e) => { if (!enviando) { const el = e.currentTarget as HTMLElement; el.style.background = "#78BE21"; el.style.color = "#101820"; } }}
                 onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "#101820"; el.style.color = "#f5f0e8"; }}
               >
-                Agendar Presentación
+                {enviando ? "Enviando..." : "Agendar Presentación"}
               </button>
 
               <p style={{ fontFamily: "var(--font-arimo)", fontSize: "10px", color: "rgba(16,24,32,0.22)", fontWeight: 300, lineHeight: 1.7, marginTop: "-0.5rem" }}>
